@@ -9,7 +9,7 @@ class MainScreenRoute extends MaterialPage {
   MainScreenRoute()
       : super(
           child: Provider(
-            create: (ctx) => MainScreenStore(),
+            create: (ctx) => MainScreenStore(ctx),
             child: Builder(
               builder: (context) => MainScreen(
                 store: context.read<MainScreenStore>(),

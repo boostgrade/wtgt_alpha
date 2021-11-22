@@ -1,5 +1,5 @@
-import 'package:where_to_go_today/src/res/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:where_to_go_today/src/ui/res/colors/colors.dart';
 
 /// Виджет, отображающий прогресс
 /// Требуется передать  в конструкторе вещественное число
@@ -36,12 +36,12 @@ class ProgressIconWidget extends StatelessWidget {
                   ),
                 )
               : const Center(
-                child: Icon(
-                  Icons.check,
-                  color: ProjectColors.activeColor,
-                  size: 16.0,
+                  child: Icon(
+                    Icons.check,
+                    color: ProjectColors.activeColor,
+                    size: 16.0,
+                  ),
                 ),
-              ),
         ],
       ),
     );

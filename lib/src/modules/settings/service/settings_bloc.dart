@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:where_to_go_today/src/modules/settings/service/state/state.dart';
 import 'package:flutter/material.dart';
+import 'package:where_to_go_today/src/services/base/throw_exception_bloc.dart';
 
 import 'event/event.dart';
 import 'settings_service.dart';
@@ -10,7 +11,8 @@ import 'settings_service.dart';
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
+class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
+    with CanThrowExceptionBlocMixin {
   SettingsBloc(this._settingsService) : super(LoadingSettingsState()) {
     on<UpdateTheme>((event, emit) async {
       await updateThemeMode(event.themeMode);

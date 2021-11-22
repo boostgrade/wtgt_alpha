@@ -4,8 +4,7 @@ import 'view_model.dart';
 
 /// Миксин, предоставляющий возможность отписать [ViewModel].
 /// Подставляем вьюмоедль через геттер.
-mixin ViewModelDisposerMixin on State{
-
+mixin ViewModelDisposerMixin<W extends StatefulWidget> on State<W> {
   ViewModel get vm;
 
   @override

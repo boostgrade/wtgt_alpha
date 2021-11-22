@@ -3,16 +3,14 @@ import 'message_controller.dart';
 import 'types/message_type.dart';
 
 /// Эта сущность отвечает только за показ сообщений.
-/// Для этого ей в конструкторое передается [BuildContext],
-/// чтобы получить из этого контекста [ScaffoldMessenger].
+/// Для этого внутри создается ключ, который устанваливается в 
+/// поле [scaffoldMessengerKey] у [MaterialApp],
+/// чтобы получить  [ScaffoldMessenger].
 class DefaultMessageController implements MessageController {
-  DefaultMessageController(BuildContext context) : _context = context;
-
-  final BuildContext _context;
+  final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   void show(MessageType messageType) {
-    ScaffoldMessenger.of(_context)
-        .showSnackBar(messageType.create() as SnackBar);
+    scaffoldKey.currentState!.showSnackBar(messageType.create() as SnackBar);
   }
 }

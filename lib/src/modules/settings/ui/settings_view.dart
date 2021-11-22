@@ -9,8 +9,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key, required this.store}) : super(key: key);
 
-  static const routeName = '/settings';
-
   final SettingsStore store;
 
   @override

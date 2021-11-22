@@ -1,12 +1,16 @@
+import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:where_to_go_today/src/app/ui/app_store.dart';
+import 'package:where_to_go_today/src/di/app_dependency.dart';
 import 'package:where_to_go_today/src/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:where_to_go_today/src/ui/base/view_model.dart';
+import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 
 /// The Widget that configures your application.
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({
     Key? key,
     required this.store,
@@ -15,12 +19,21 @@ class App extends StatelessWidget {
   final AppStore store;
 
   @override
-  Widget build(BuildContext context) {
+  State<App> createState() => _AppState();
+}
 
+class _AppState extends State<App> with ViewModelDisposerMixin {
+  @override
+  ViewModel get vm => widget.store;
+
+  @override
+  Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: store,
+      animation: widget.store,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp.router(
+          scaffoldMessengerKey:
+              context.read<AppDependencies>().messageController.scaffoldKey,
           routerDelegate: RoutemasterDelegate(
             routesBuilder: (_) => AppRouter.routes,
           ),
@@ -41,7 +54,7 @@ class App extends StatelessWidget {
               AppLocalizations.of(context)!.appTitle,
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
-          themeMode: store.themeMode,
+          themeMode: widget.store.themeMode,
         );
       },
     );

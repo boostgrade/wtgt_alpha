@@ -1,4 +1,5 @@
 import 'package:rxdart/rxdart.dart';
+import 'package:where_to_go_today/src/services/base/throw_exception_bloc.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 
 /// Базовый класс для всех делегатов презентационной логики
@@ -9,6 +10,29 @@ class ViewModel {
   final CompositeSubscription _compositeSubscription = CompositeSubscription();
 
   ViewModel(this.errorHandler);
+
+  /// Подписывает вьюмодель на блок
+  /// 
+  /// Любой блок в приложении пропускем именно через эжту функцию. 
+  /// Автоматически подписывает на событие ошибок.
+  void observeBloc<S, B extends CanThrowExceptionBlocMixin<Object, S>>(
+    B bloc,
+    void Function(S) onState, {
+    Function? onError,
+  }) {
+    final subs = bloc.stream.listen(onState);
+    final errorSubs = bloc.errorStream.doOnError(
+      (e, stacktrace) {
+        errorHandler.handle(e);
+      },
+    ).listen(
+      null,
+      onError: onError,
+    );
+
+    _compositeSubscription.add(subs);
+    _compositeSubscription.add(errorSubs);
+  }
 
   /// Подписывает на изменения стрима некоторую функцию.
   /// Основный метод для отслеживания измнений внешних сервисов.

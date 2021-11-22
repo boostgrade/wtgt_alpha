@@ -13,7 +13,10 @@ void main() async {
     Provider(
       create: (ctx) => globalDeps,
       child: App(
-        store: AppStore(globalDeps.settingsController),
+        store: AppStore(
+          globalDeps.settingsController,
+          globalDeps.errorHandler,
+        ),
       ),
     ),
   );

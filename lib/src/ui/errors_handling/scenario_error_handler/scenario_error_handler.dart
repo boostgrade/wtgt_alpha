@@ -13,7 +13,7 @@ class ScenarioErrorHandler implements ErrorHandler {
 
   @override
   void handle(Object error) {
-    scenario.getBehavior(error.runtimeType).call();
+    scenario.getBehavior(error).call();
   }
 }
 
