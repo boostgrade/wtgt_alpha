@@ -11,8 +11,10 @@ class SettingsRoute extends MaterialPage {
   SettingsRoute()
       : super(
           child: Provider<SettingsStore>(
-            create: (ctx) =>
-                SettingsStore(ctx.read<AppDependencies>().settingsController),
+            create: (ctx) => SettingsStore(
+              ctx.read<AppDependencies>().settingsController,
+              ctx.read<AppDependencies>().errorHandler,
+            ),
             child: Builder(
               builder: (context) {
                 return SettingsView(

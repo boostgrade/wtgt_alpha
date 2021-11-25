@@ -12,13 +12,13 @@ mixin _$SettingsStore on _SettingsStore, Store {
   final _$themeModeAtom = Atom(name: '_SettingsStore.themeMode');
 
   @override
-  ThemeMode? get themeMode {
+  ThemeMode get themeMode {
     _$themeModeAtom.reportRead();
     return super.themeMode;
   }
 
   @override
-  set themeMode(ThemeMode? value) {
+  set themeMode(ThemeMode value) {
     _$themeModeAtom.reportWrite(value, super.themeMode, () {
       super.themeMode = value;
     });

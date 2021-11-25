@@ -6,12 +6,13 @@ import 'package:where_to_go_today/src/ui/res/colors/colors.dart';
 /// Если прогресс меньше единицы - отображается кружок с количеством процентов
 /// Если прогресс равен единице - показывается иконка с галочкой
 class ProgressIconWidget extends StatelessWidget {
+  final double progress;
+  
   const ProgressIconWidget({
     Key? key,
     required this.progress,
   }) : super(key: key);
 
-  final double progress;
 
   @override
   Widget build(BuildContext context) {

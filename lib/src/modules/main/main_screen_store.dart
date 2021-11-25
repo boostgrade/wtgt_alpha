@@ -12,15 +12,16 @@ class MainScreenStore = _MainScreenStore with _$MainScreenStore;
 abstract class _MainScreenStore with Store {
 
   final BuildContext context;
-
-  _MainScreenStore(this.context);
-
+  
   @observable
   int currentIndex = 0;
+
+  _MainScreenStore(this.context);
 
   @action
   void tabClicked(int index) {
     Routemaster.of(context).push(SettingsRoute.routeName);
+
     currentIndex = index;
   }
 }

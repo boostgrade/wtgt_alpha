@@ -20,6 +20,11 @@ class SnackBarErrorScenarios implements ErrorScenario {
     _setBehavior();
   }
 
+  @override
+  void Function() getBehavior(Object error) {
+    return behaviors[error.runtimeType] ?? _defaultBehavior();
+  }
+
   /// Устанавливаем поведение в виде отображения (Map)
   void _setBehavior() {
     behaviors = {
@@ -33,10 +38,5 @@ class SnackBarErrorScenarios implements ErrorScenario {
   /// для ошибок, которые на данные момент не предусмотрены
   void Function() _defaultBehavior() {
     return () => {};
-  }
-
-  @override
-  void Function() getBehavior(Object error) {
-    return behaviors[error.runtimeType] ?? _defaultBehavior();
   }
 }
