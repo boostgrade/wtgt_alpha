@@ -1,1 +1,1 @@
-const String baseUrl = ''; //TODO: вставить адрес сервера
+const String baseUrl = 'https://yandex.ru/'; //TODO: вставить адрес сервера
