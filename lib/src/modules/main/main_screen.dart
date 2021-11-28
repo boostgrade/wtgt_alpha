@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:dio/dio.dart';
 import 'main_screen_store.dart';
+import 'package:where_to_go_today/src/services/network/dio/dio_module.dart';
 
 /// Глвный экран с табами
 class MainScreen extends StatelessWidget {
@@ -24,12 +25,19 @@ class MainScreen extends StatelessWidget {
     ),
   ];
 
+  diorequest() async {
+  var dio = DioModule().dio;
+  Response response = await dio.get('https://google.com');
+  //print(response.data);
+}
+
   MainScreen({Key? key, required this.store}) : super(key: key);
 
 
 
   @override
   Widget build(BuildContext context) {
+    diorequest();
     return Observer(
       builder: (_) => Scaffold(
         body: _screens[store.currentIndex],
