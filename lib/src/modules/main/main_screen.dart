@@ -7,12 +7,10 @@ import 'main_screen_store.dart';
 
 /// Глвный экран с табами
 class MainScreen extends StatelessWidget {
-  MainScreen({Key? key, required this.store}) : super(key: key);
-
-  static const double _labelSize = 12.0;
 
   final MainScreenStore store;
 
+  static const double _labelSize = 12.0;
   // TODO(artem-zaitsev): здесь будут храниться экраны, когда появятся
   final List<Widget> _screens = [
     const Center(
@@ -25,6 +23,10 @@ class MainScreen extends StatelessWidget {
       child: Text('Screen 2'),
     ),
   ];
+
+  MainScreen({Key? key, required this.store}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {

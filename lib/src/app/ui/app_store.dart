@@ -11,22 +11,19 @@ part 'app_store.g.dart';
 class AppStore = _AppStore with _$AppStore;
 
 abstract class _AppStore extends ViewModel with Store, ChangeNotifier {
+
+  @observable
+  ThemeMode? themeMode;
+
   final SettingsBloc _bloc;
 
   _AppStore(this._bloc, ErrorHandler errorHandler) : super(errorHandler) {
     observeBloc<SettingsState, SettingsBloc>(_bloc, 
       (event) {
-        if (event is SettingsWithDataState) {
-          themeMode = event.themeMode;
-        } else {
-          themeMode = ThemeMode.system;
-        }
+        themeMode = event is SettingsWithDataState ? event.themeMode : ThemeMode.system;
 
         notifyListeners();
       },
     );
   }
-
-  @observable
-  ThemeMode? themeMode;
 }

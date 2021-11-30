@@ -13,6 +13,14 @@ import 'settings_service.dart';
 /// uses the SettingsService to store and retrieve user settings.
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     with CanThrowExceptionBlocMixin {
+
+  // Make SettingsService a private variable so it is not used directly.
+  final SettingsService _settingsService;
+
+  // Make ThemeMode a private variable so it is not updated directly without
+  // also persisting the changes with the SettingsService.
+  late ThemeMode _themeMode;
+
   SettingsBloc(this._settingsService) : super(LoadingSettingsState()) {
     on<UpdateTheme>((event, emit) async {
       await updateThemeMode(event.themeMode);
@@ -25,23 +33,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
 
       emit(LoadingSettingsState());
     });
-  }
-
-  // Make SettingsService a private variable so it is not used directly.
-  final SettingsService _settingsService;
-
-  // Make ThemeMode a private variable so it is not updated directly without
-  // also persisting the changes with the SettingsService.
-  late ThemeMode _themeMode;
-
-  // Allow Widgets to read the user's preferred ThemeMode.
-  ThemeMode get themeMode => _themeMode;
-
-  /// Load the user's settings from the SettingsService. It may load from a
-  /// local database or the internet. The controller only knows it can load the
-  /// settings from the service.
-  Future<void> _loadSettings() async {
-    _themeMode = await _settingsService.themeMode();
   }
 
   /// Update and persist the ThemeMode based on the user's selection.
@@ -58,4 +49,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     // SettingService.
     await _settingsService.updateThemeMode(newThemeMode);
   }
+
+  /// Load the user's settings from the SettingsService. It may load from a
+  /// local database or the internet. The controller only knows it can load the
+  /// settings from the service.
+  Future<void> _loadSettings() async {
+    _themeMode = await _settingsService.themeMode();
+  }
+
 }

@@ -3,22 +3,25 @@ import 'package:where_to_go_today/src/modules/settings/service/settings_bloc.dar
 import 'package:where_to_go_today/src/modules/settings/service/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:where_to_go_today/src/ui/base/view_model.dart';
+import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 
 part 'settings_store.g.dart';
 
 class SettingsStore = _SettingsStore with _$SettingsStore;
 
-abstract class _SettingsStore with Store {
-  _SettingsStore(this._bloc) {
-    _bloc.stream.listen(
-      _handleStates,
-    );
-  }
+abstract class _SettingsStore extends ViewModel with Store {
+  @observable
+  ThemeMode themeMode = ThemeMode.system;
 
   final SettingsBloc _bloc;
 
-  @observable
-  ThemeMode? themeMode;
+  _SettingsStore(
+    this._bloc,
+    ErrorHandler errorHandler,
+  ) : super(errorHandler) {
+    observeBloc<SettingsState, SettingsBloc>(_bloc, _handleStates);
+  }
 
   @action
   void updateTheme(ThemeMode? mode) {

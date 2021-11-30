@@ -11,13 +11,14 @@ import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 
 /// The Widget that configures your application.
 class App extends StatefulWidget {
+  final AppStore store;
+
   const App({
     Key? key,
     required this.store,
   }) : super(key: key);
 
-  final AppStore store;
-
+  
   @override
   State<App> createState() => _AppState();
 }

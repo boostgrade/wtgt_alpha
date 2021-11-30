@@ -1,16 +1,27 @@
 import 'package:where_to_go_today/src/modules/settings/ui/settings_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:where_to_go_today/src/ui/base/view_model.dart';
+import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key, required this.store}) : super(key: key);
-
+class SettingsView extends StatefulWidget {
   final SettingsStore store;
 
+  const SettingsView({Key? key, required this.store}) : super(key: key);
+
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> with ViewModelDisposerMixin {
+
+  @override
+  ViewModel get vm => widget.store;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +35,9 @@ class SettingsView extends StatelessWidget {
           name: 'Settings',
           builder: (_) => DropdownButton<ThemeMode>(
             // Read the selected themeMode from the controller
-            value: store.themeMode,
+            value: widget.store.themeMode,
             // Call the updateThemeMode method any time the user selects a theme.
-            onChanged: store.updateTheme,
+            onChanged: widget.store.updateTheme,
             items: const [
               DropdownMenuItem(
                 value: ThemeMode.system,
@@ -43,7 +54,7 @@ class SettingsView extends StatelessWidget {
               DropdownMenuItem(
                 child: Text('null'),
                 value: null,
-              )
+              ),
             ],
           ),
         ),
