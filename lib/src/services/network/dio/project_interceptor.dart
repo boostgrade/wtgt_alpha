@@ -6,7 +6,7 @@ class ProjectInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     debugPrint('test1');
     debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
-    return super.onRequest(options, handler);
+    return handler.next(options);
   }
 
   @override
@@ -15,7 +15,7 @@ class ProjectInterceptor extends Interceptor {
     debugPrint(
       'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
     );
-    return super.onResponse(response, handler);
+    return handler.next(response);
   }
 
   @override
@@ -24,6 +24,7 @@ class ProjectInterceptor extends Interceptor {
     debugPrint(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );
+    
     return super.onError(err, handler);
   }
 }
