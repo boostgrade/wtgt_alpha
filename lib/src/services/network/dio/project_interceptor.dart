@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 class ProjectInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('test1');
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    debugPrint('test1');
+    debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print('test2');
-    print(
+    debugPrint('test2');
+    debugPrint(
       'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
     );
     return super.onResponse(response, handler);
@@ -19,8 +20,8 @@ class ProjectInterceptor extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print('test3');
-    print(
+    debugPrint('test3');
+    debugPrint(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );
     return super.onError(err, handler);
