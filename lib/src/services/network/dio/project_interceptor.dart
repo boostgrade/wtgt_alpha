@@ -1,30 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:where_to_go_today/src/services/exceptions/server/server_exceptions.dart';
 
 class ProjectInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    debugPrint('test1');
-    debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
     return handler.next(options);
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    debugPrint('test2');
-    debugPrint(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
-    );
+  void onResponse(Response response, ResponseInterceptorHandler handler) {    
     return handler.next(response);
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    debugPrint('test3');
-    debugPrint(
+  void onError(DioError err, ErrorInterceptorHandler handler) {   
+      if(err.response?.statusCode == 400){
+        throw BadRequestException();
+      }
+
+      if(err.response?.statusCode == 401){
+        throw UnauthorizedException();
+      }
+    
+     debugPrint(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );
-    
+
     return super.onError(err, handler);
   }
 }

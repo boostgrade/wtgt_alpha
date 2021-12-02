@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 import 'main_screen_store.dart';
-import 'package:where_to_go_today/src/services/network/dio/dio_module.dart';
 import 'package:where_to_go_today/src/di/app_dependency.dart';
+
 
 /// Глвный экран с табами
 class MainScreen extends StatelessWidget {
@@ -31,8 +30,8 @@ class MainScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-   context.read<AppDependencies>().dio.get('https://fanta-grooming.ru/ggg');// 404 error
-   // context.read<AppDependencies>().dio.get('http://ya.ru/'); // 200
+   context.read<AppDependencies>().dio.get('https://fanta-grooming.ru/ggg');
+   
     return Observer(      
       builder: (_) => Scaffold(
         
