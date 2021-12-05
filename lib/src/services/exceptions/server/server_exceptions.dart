@@ -10,29 +10,26 @@ class ServerErrorException implements Exception {
   final int? code;
   final String? message;  
   const ServerErrorException(this.code, this.message);
-  printError(){
-    print('[${code}] => PATH: ${message}');
-  }
-  
 }
-
+/// Ошибка 404
 class NotFoundException implements Exception {
   final int? code;
-  final String? message;    
+  final String? message;  
+  const NotFoundException(this.code, this.message);  
   
    void printerror(){
     return debugPrint('[${code}] => PATH: Наконец-то 404!!!!');
    }
     
-  const NotFoundException(this.code, this.message);
+  
 }
-
+/// Ошибка 400
 class BadRequestException implements Exception {
    final int? code;
   final String? message;  
   const BadRequestException(this.code, this.message);
 }
-
+/// Ошибка 401
 class UnauthorizedException implements Exception {
    final int? code;
   final String? message;  
