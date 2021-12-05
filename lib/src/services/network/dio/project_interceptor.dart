@@ -1,32 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:where_to_go_today/src/services/exceptions/server/server_exceptions.dart';
+import 'package:where_to_go_today/src/services/exceptions/server/server_error_mapper.dart';
 
-class ProjectInterceptor extends Interceptor {
+/// Обрабатывает HTTP код и приводит его к Exception либо передает управление следующему Interceptor
+class ErrorInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    return handler.next(options);
-  }
+  void onError(DioError err, ErrorInterceptorHandler handler) { 
+    int? code = err.response?.statusCode;
+    String? message = err.response?.statusMessage;
+    ServerErrorMapper.fromStatusCode(code, message);
 
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {    
-    return handler.next(response);
-  }
-
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {   
-      if(err.response?.statusCode == 400){
-        throw BadRequestException();
-      }
-
-      if(err.response?.statusCode == 401){
-        throw UnauthorizedException();
-      }
-    
-     debugPrint(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
-    );
-
-    return super.onError(err, handler);
+      return handler.next(err);
   }
 }

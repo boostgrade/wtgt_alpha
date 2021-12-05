@@ -11,7 +11,7 @@ class DioModule {
     ..interceptors.addAll(
       [
         LogInterceptor(),
-        ProjectInterceptor(),
+        ErrorInterceptor(),
       ],
     );
 }

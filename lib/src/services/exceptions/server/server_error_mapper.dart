@@ -8,22 +8,22 @@ class ServerErrorMapper {
   static const int _notFound = 404;
   static const int _badRequest = 400;
   static const int _unauthorized = 401;
-  
-  static Exception fromStatusCode(int statusCode) {
+
+  static Exception fromStatusCode(int? statusCode, String? message) {
     /// Для обработки остальных серверных ошибок
     /// нужно написать дополнительные блоки в условном выражении,
     /// предварительно создав классы исключений.
     if (statusCode == _notFound) {
-      return NotFoundException();
+      return NotFoundException(statusCode, message);
     }
     if (statusCode == _badRequest) {
-      return BadRequestException();
+      return BadRequestException(statusCode, message);
     }
     if (statusCode == _unauthorized) {
-      return UnauthorizedException();
+      return UnauthorizedException(statusCode, message);
     }
 
     /// Возвращается по-умолчанию для остальных ошибок
-    return ServerErrorException();
+    return ServerErrorException(statusCode, message);
   }
 }
