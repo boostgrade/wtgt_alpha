@@ -9,17 +9,17 @@ import 'package:flutter/cupertino.dart';
 class ServerErrorException implements Exception {
   final int? code;
   final String? message;  
-  const ServerErrorException(this.code, this.message);
+ ServerErrorException(this.code, this.message);
 }
 /// Ошибка 404
 class NotFoundException implements Exception {
   final int? code;
   final String? message;  
-  const NotFoundException(this.code, this.message);  
-  
-   void printerror(){
-    return debugPrint('[${code}] => PATH: Наконец-то 404!!!!');
-   }
+  NotFoundException(this.code, this.message){ 
+   
+    debugPrint('[$code] => PATH: Наконец-то 404!!!!');
+  }
+   
     
   
 }
@@ -33,10 +33,11 @@ class BadRequestException implements Exception {
 class UnauthorizedException implements Exception {
    final int? code;
   final String? message;  
-  const UnauthorizedException(this.code, this.message);
+  UnauthorizedException(this.code, this.message){
 
   //TODO необходимо перезапросить токен
-  void printerror(){
-    return debugPrint('[${code}] => PATH: ${message}');
+  
+    debugPrint('[$code] => PATH: $message');
   }
+  
 }
