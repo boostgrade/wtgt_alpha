@@ -9,27 +9,24 @@ class ButtonWidget extends StatelessWidget {
   final String title;
   final bool process;
   final bool disable;
-  final void Function()? callBackPressed;
+  final void Function()? onSomething;
 
   const ButtonWidget({
     Key? key,
     required this.title,
-    required this.callBackPressed,
+    required this.onSomething,
     this.process = false,
     this.disable = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = (disable
+    final Color textColor = disable
         ? ProjectColors.textColorDisabled
-        : ProjectColors.textColorPrimary);
+        : ProjectColors.textColorPrimary;
 
     return ElevatedButton(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          const EdgeInsets.all(8),
-        ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -42,7 +39,7 @@ class ButtonWidget extends StatelessWidget {
           },
         ),
       ),
-      onPressed: disable ? null : callBackPressed,
+      onPressed: disable ? null : onSomething,
       child: !process
           ? Text(
               title,
@@ -51,9 +48,13 @@ class ButtonWidget extends StatelessWidget {
                 fontSize: 16,
               ),
             )
-          : const CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(ProjectColors.preloaderColor),
+          : Container(
+              margin: const EdgeInsets.only(top: 8, bottom: 8),
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  ProjectColors.preloaderColor,
+                ),
+              ),
             ),
     );
   }
