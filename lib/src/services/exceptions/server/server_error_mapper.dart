@@ -1,4 +1,6 @@
 import 'server_exceptions.dart';
+import 'package:dio/dio.dart';
+import 'package:where_to_go_today/src/services/models/server_error_response.dart';
 
 /// Сущность, которая преобразует ошибки сервера в ошибки приложенния
 /// для дальнейшей обработки.
@@ -9,21 +11,25 @@ class ServerErrorMapper {
   static const int _badRequest = 400;
   static const int _unauthorized = 401;
 
-  static Exception fromStatusCode(int? statusCode, String? message) {
+  static Exception fromStatusCode(DioError err) {
     /// Для обработки остальных серверных ошибок
     /// нужно написать дополнительные блоки в условном выражении,
     /// предварительно создав классы исключений.
-    if (statusCode == _notFound) {
-      return NotFoundException(statusCode, message);
+    if (err.response?.statusCode == _notFound) {
+
+      return NotFoundException(err.response?.statusCode, err.response?.statusMessage);
     }
-    if (statusCode == _badRequest) {
-      return BadRequestException(statusCode, message);
+    if (err.response?.statusCode == _badRequest) {
+      final  dataerr = ServerErrorResponse.fromJson(err.response?.data);
+
+      return BadRequestException(dataerr.code, dataerr.message);
     }
-    if (statusCode == _unauthorized) {
-      return UnauthorizedException(statusCode, message);
+    if (err.response?.statusCode == _unauthorized) {
+
+      return UnauthorizedException(err.response?.statusCode, err.response?.statusMessage);
     }
 
     /// Возвращается по-умолчанию для остальных ошибок
-    return ServerErrorException(statusCode, message);
+    return ServerErrorException(err.response?.statusCode, err.response?.statusMessage);
   }
 }

@@ -19,19 +19,16 @@ class NotFoundException implements Exception {
    
     debugPrint('[$code] => PATH: Наконец-то 404!!!!');
   }
-   
-    
-  
 }
 /// Ошибка 400
 class BadRequestException implements Exception {
-   final int? code;
+  final int? code;
   final String? message;  
   const BadRequestException(this.code, this.message);
 }
 /// Ошибка 401
 class UnauthorizedException implements Exception {
-   final int? code;
+  final int? code;
   final String? message;  
   UnauthorizedException(this.code, this.message){
 
