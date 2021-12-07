@@ -7,6 +7,5 @@ class ErrorInterceptor extends Interceptor {
   void onError(DioError err, ErrorInterceptorHandler handler) { 
     throw ServerErrorMapper.fromStatusCode(err);
 
-      return handler.next(err);
   }
 }
