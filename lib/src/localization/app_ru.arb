@@ -2,5 +2,6 @@
   "appTitle": "Куда пойти сегодня?",
   "placesTabName": "Заведения",
   "cardTabName": "Моя Карта",
-  "profileTabName": "Профиль"
+  "profileTabName": "Профиль",
+  "buttonTitle": "Показать все"
 }

@@ -13,6 +13,10 @@ abstract class ProjectColors {
   static const Color textFieldColor = _brightGrey;
   static const Color secondaryColor = _dustyBlue;
   static const Color textColorPrimary = _black;
+  static const Color buttonColor = _yellow;
+  static const Color preloaderColor = _cyanBlue;
+  static const Color textColorDisabled = _blackTranslucent;
+  static const Color borderColorButton = _cyanBlue;
 
 //TODO: Основная палитра
 
@@ -24,6 +28,8 @@ abstract class ProjectColors {
   static const Color _green = Color(0xFF90BE6D);
   static const Color _brightGrey = Color(0xFFEBEDF0);
   static const Color _dustyBlue = Color(0xFFA8DADC);
-  static const Color _black = Color(0xFF242424);
+  static const Color _black = Color(0xFF000000);
+  static const Color _yellow = Color(0xFFEBCE0C);
+  static const Color _blackTranslucent = Color(0xFF999999);
+  static const Color _cyanBlue = Color(0xFF184E9E);
 }
-
