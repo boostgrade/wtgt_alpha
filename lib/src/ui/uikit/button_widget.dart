@@ -7,21 +7,21 @@ import 'package:where_to_go_today/src/ui/res/colors/colors.dart';
 /// и флаг disable блокирование кнопки
 class ButtonWidget extends StatelessWidget {
   final String title;
-  final bool process;
-  final bool disable;
-  final void Function()? onSomething;
+  final bool isProcess;
+  final bool isDisable;
+  final void Function()? onPressed;
 
   const ButtonWidget({
     Key? key,
     required this.title,
-    required this.onSomething,
-    this.process = false,
-    this.disable = false,
+    required this.onPressed,
+    this.isProcess = false,
+    this.isDisable = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = disable
+    final Color textColor = isDisable
         ? ProjectColors.textColorDisabled
         : ProjectColors.textColorPrimary;
 
@@ -39,8 +39,8 @@ class ButtonWidget extends StatelessWidget {
           },
         ),
       ),
-      onPressed: disable ? null : onSomething,
-      child: !process
+      onPressed: isDisable ? null : onPressed,
+      child: !isProcess
           ? Text(
               title,
               style: TextStyle(
@@ -48,12 +48,10 @@ class ButtonWidget extends StatelessWidget {
                 fontSize: 16,
               ),
             )
-          : Container(
-              margin: const EdgeInsets.only(top: 8, bottom: 8),
-              child: const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  ProjectColors.preloaderColor,
-                ),
+          : const Padding(
+              padding: EdgeInsets.only(top: 8, bottom: 8),
+              child: CircularProgressIndicator(
+                color: ProjectColors.preloaderColor,
               ),
             ),
     );
