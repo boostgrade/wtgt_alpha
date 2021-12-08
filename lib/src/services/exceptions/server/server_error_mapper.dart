@@ -20,9 +20,9 @@ class ServerErrorMapper {
       return NotFoundException(err.response?.statusCode, err.response?.statusMessage);
     }
     if (err.response?.statusCode == _badRequest) {
-      final  dataerr = ServerErrorResponse.fromJson(err.response?.data);
+      final  errorData = ServerErrorResponse.fromJson(err.response?.data);
 
-      return BadRequestException(dataerr.code, dataerr.message);
+      return BadRequestException(errorData.code, errorData.message);
     }
     if (err.response?.statusCode == _unauthorized) {
 

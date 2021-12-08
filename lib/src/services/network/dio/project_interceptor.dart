@@ -6,6 +6,5 @@ class ErrorInterceptor extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) { 
     throw ServerErrorMapper.fromStatusCode(err);
-
   }
 }
