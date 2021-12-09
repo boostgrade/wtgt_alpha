@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:provider/provider.dart';
 import 'main_screen_store.dart';
+import 'package:where_to_go_today/src/di/app_dependency.dart';
+
 
 /// Глвный экран с табами
 class MainScreen extends StatelessWidget {
@@ -25,13 +27,14 @@ class MainScreen extends StatelessWidget {
   ];
 
   MainScreen({Key? key, required this.store}) : super(key: key);
-
-
-
+  
   @override
   Widget build(BuildContext context) {
-    return Observer(
+   context.read<AppDependencies>().dio.get('https://fanta-grooming.ru/ggg');
+   
+    return Observer(      
       builder: (_) => Scaffold(
+        
         body: _screens[store.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           onTap: store.tabClicked,
