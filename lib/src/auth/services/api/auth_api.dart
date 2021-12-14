@@ -1,25 +1,37 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'package:where_to_go_today/src/di/app_dependency.dart';
 
 part 'auth_api.g.dart';
- var baseAppUrl = AppDependencies().dio.options.baseUrl;
 
-@RestApi(baseUrl: 'http://ya.ru')
-abstract class RestClient {
-  factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET('/tasks')
-  Future<List<Response>> getResponses();
+@RestApi()
+abstract class AuthApi {
+  factory AuthApi(Dio dio, {String baseUrl}) = _AuthApi;
+
+  @POST('login_apple')
+  Future<List<AuthResponse>> getAppleResponses();  
+
+  @POST('login_google')
+  Future<List<AuthResponse>> getGoogleResponses();
+
+  @POST('login_meta')
+  Future<List<AuthResponse>> getMetaResponses();
+
+  @POST('login_phone')
+  Future<List<AuthResponse>> getPhoneResponses();
+
+   @POST('login_vc')
+  Future<List<AuthResponse>> getVcResponses();
+   
 }
 
 @JsonSerializable()
-class Response {
+class AuthResponse {
   String? content;
 
-  Response({this.content});
+  AuthResponse({this.content});
 
-  factory Response.fromJson(Map<String, dynamic> json) => _$ResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$ResponseToJson(this);
+  factory AuthResponse.fromJson(Map<String, dynamic> json) => _$AuthResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$AuthResponseToJson(this);
 }
