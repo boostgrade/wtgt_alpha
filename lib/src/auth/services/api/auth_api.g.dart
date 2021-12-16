@@ -27,92 +27,83 @@ class _AuthApi implements AuthApi {
   String? baseUrl;
 
   @override
-  Future<List<AuthResponse>> getAppleResponses() async {
+  Future<AuthResponse> loginByApple(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<AuthResponse>>(
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'login_apple',
+                .compose(_dio.options, '/login/apple',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => AuthResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AuthResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<AuthResponse>> getGoogleResponses() async {
+  Future<AuthResponse> loginByGoogle(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<AuthResponse>>(
+    final _data = body;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'login_google',
+                .compose(_dio.options, '/login/google',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => AuthResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AuthResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<AuthResponse>> getMetaResponses() async {
+  Future<AuthResponse> loginByMeta(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<AuthResponse>>(
+    final _data = body;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'login_meta',
+                .compose(_dio.options, '/login/meta',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => AuthResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AuthResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<AuthResponse>> getPhoneResponses() async {
+  Future<AuthResponse> loginByPhone(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<AuthResponse>>(
+    final _data = body;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'login_phone',
+                .compose(_dio.options, '/login/phone',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => AuthResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AuthResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<List<AuthResponse>> getVcResponses() async {
+  Future<AuthResponse> loginByVk(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<AuthResponse>>(
+    final _data = body;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<AuthResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, 'login_vc',
+                .compose(_dio.options, 'login_vk',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => AuthResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AuthResponse.fromJson(_result.data!);
     return value;
   }
 
