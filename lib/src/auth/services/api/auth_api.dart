@@ -8,6 +8,7 @@ import 'package:where_to_go_today/src/auth/api/models/requests/login_by_phone_re
 import 'package:where_to_go_today/src/auth/api/models/requests/login_by_vk_request.dart';
 import 'package:where_to_go_today/src/domain/user.dart';
 import 'package:where_to_go_today/src/domain/token.dart';
+import 'package:where_to_go_today/src/domain/refresh_token.dart';
 part 'auth_api.g.dart';
 
 
@@ -35,9 +36,10 @@ abstract class AuthApi {
 @JsonSerializable()
 class AuthResponse {
   final Token token;
+  final RefreshToken overtoken;
   final User user;
 
-  AuthResponse({token, user}); 
+  AuthResponse({required this.token, required this.overtoken, required this.user }); 
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) => _$AuthResponseFromJson(json);
   Map<String, dynamic> toJson() => _$AuthResponseToJson(this);
