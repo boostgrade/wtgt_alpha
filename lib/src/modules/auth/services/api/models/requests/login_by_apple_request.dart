@@ -3,8 +3,8 @@ part 'login_by_apple_request.g.dart';
 
 @JsonSerializable()
 class LoginByAppleRequest {
-  final String content;
-  LoginByAppleRequest({required this.content});
+  final String token;
+  LoginByAppleRequest({required this.token});
   factory LoginByAppleRequest.fromJson(Map<String, dynamic> json) => _$LoginByAppleRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginByAppleRequestToJson(this);

@@ -8,11 +8,11 @@ part of 'login_by_apple_request.dart';
 
 LoginByAppleRequest _$LoginByAppleRequestFromJson(Map<String, dynamic> json) =>
     LoginByAppleRequest(
-      content: json['content'] as String,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$LoginByAppleRequestToJson(
         LoginByAppleRequest instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'token': instance.token,
     };
