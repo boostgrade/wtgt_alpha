@@ -1,16 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'package:where_to_go_today/src/domain/user.dart';
-import 'package:where_to_go_today/src/domain/token.dart';
-import 'package:where_to_go_today/src/domain/refresh_token.dart';
 import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/login_response.dart';
-
 import 'models/requests/login_by_apple_request.dart';
 import 'models/requests/login_by_google_request.dart';
 import 'models/requests/login_by_meta_request.dart';
 import 'models/requests/login_by_phone_request.dart';
 import 'models/requests/login_by_vk_request.dart';
+import 'models/requests/register_request.dart';
 
 part 'auth_api.g.dart';
 
@@ -33,5 +29,11 @@ abstract class AuthApi {
 
    @POST('/login/vk')
   Future<LoginResponse> loginByVk(@Body() LoginByVkRequest body);
+
+     @POST('/register')
+  Future<LoginResponse> register(@Body() RegisterRequest body);
+
+     @POST('/logout')
+  Future<void> logout();
    
 }

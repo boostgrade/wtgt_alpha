@@ -8,11 +8,11 @@ part of 'login_by_phone_request.dart';
 
 LoginByPhoneRequest _$LoginByPhoneRequestFromJson(Map<String, dynamic> json) =>
     LoginByPhoneRequest(
-      content: json['content'] as String,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$LoginByPhoneRequestToJson(
         LoginByPhoneRequest instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'token': instance.token,
     };

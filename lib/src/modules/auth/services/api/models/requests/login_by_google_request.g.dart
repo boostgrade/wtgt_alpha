@@ -9,11 +9,11 @@ part of 'login_by_google_request.dart';
 LoginByGoogleRequest _$LoginByGoogleRequestFromJson(
         Map<String, dynamic> json) =>
     LoginByGoogleRequest(
-      content: json['content'] as String,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$LoginByGoogleRequestToJson(
         LoginByGoogleRequest instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'token': instance.token,
     };

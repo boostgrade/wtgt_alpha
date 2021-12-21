@@ -8,10 +8,10 @@ part of 'login_by_meta_request.dart';
 
 LoginByMetaRequest _$LoginByMetaRequestFromJson(Map<String, dynamic> json) =>
     LoginByMetaRequest(
-      content: json['content'] as String,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$LoginByMetaRequestToJson(LoginByMetaRequest instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'token': instance.token,
     };
