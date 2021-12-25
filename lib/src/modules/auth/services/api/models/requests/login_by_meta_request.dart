@@ -5,7 +5,8 @@ part 'login_by_meta_request.g.dart';
 class LoginByMetaRequest {
   final String token;
   LoginByMetaRequest({required this.token});
-  factory LoginByMetaRequest.fromJson(Map<String, dynamic> json) => _$LoginByMetaRequestFromJson(json);
+  factory LoginByMetaRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginByMetaRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginByMetaRequestToJson(this);
 }

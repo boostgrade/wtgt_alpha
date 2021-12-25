@@ -5,7 +5,8 @@ part 'login_by_vk_request.g.dart';
 class LoginByVkRequest {
   final String token;
   LoginByVkRequest({required this.token});
-  factory LoginByVkRequest.fromJson(Map<String, dynamic> json) => _$LoginByVkRequestFromJson(json);
+  factory LoginByVkRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginByVkRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginByVkRequestToJson(this);
 }

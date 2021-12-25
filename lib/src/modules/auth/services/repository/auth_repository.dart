@@ -7,65 +7,68 @@ import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/
 import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_meta_request.dart';
 import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_phone_request.dart';
 import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_vk_request.dart';
+import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/register_request.dart';
 import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/login_response.dart';
 
 class AuthRepository {
   final AuthApi _authApi;
   AuthRepository(this._authApi);
 
-  Future<LoginModel> loginByApple(String appleToken) async{
-    final LoginResponse response  = await _authApi.loginByApple(LoginByAppleRequest(token:appleToken));
+  Future<LoginModel> loginByApple(String appleToken) async {
+    final LoginResponse response =
+        await _authApi.loginByApple(LoginByAppleRequest(token: appleToken));
 
-    return getLoginModel(response);    
+    return mapResponseToLoginModel(response);
   }
 
-  Future<LoginModel> loginByGoogle(String googleToken) async{
-    final LoginResponse response  = await _authApi.loginByGoogle(LoginByGoogleRequest(token:googleToken));
+  Future<LoginModel> loginByGoogle(String googleToken) async {
+    final LoginResponse response =
+        await _authApi.loginByGoogle(LoginByGoogleRequest(token: googleToken));
 
-    return getLoginModel(response);    
+    return mapResponseToLoginModel(response);
   }
 
-  Future<LoginModel> loginByMeta(String metaToken) async{
-    final LoginResponse response  = await _authApi.loginByMeta(LoginByMetaRequest(token:metaToken));
+  Future<LoginModel> loginByMeta(String metaToken) async {
+    final LoginResponse response =
+        await _authApi.loginByMeta(LoginByMetaRequest(token: metaToken));
 
-    return getLoginModel(response);    
+    return mapResponseToLoginModel(response);
   }
 
-  Future<LoginModel> loginByPhone(String phoneToken) async{
-    final LoginResponse response  = await _authApi.loginByPhone(LoginByPhoneRequest(token:phoneToken));
+  Future<LoginModel> loginByPhone(String phoneToken) async {
+    final LoginResponse response =
+        await _authApi.loginByPhone(LoginByPhoneRequest(token: phoneToken));
 
-    return getLoginModel(response);    
+    return mapResponseToLoginModel(response);
   }
 
-  Future<LoginModel> loginByVk(String vkToken) async{
-    final LoginResponse response  = await _authApi.loginByVk(LoginByVkRequest(token:vkToken));
+  Future<LoginModel> loginByVk(String vkToken) async {
+    final LoginResponse response =
+        await _authApi.loginByVk(LoginByVkRequest(token: vkToken));
 
-    return getLoginModel(response);    
+    return mapResponseToLoginModel(response);
   }
 
-  Future<void> register(User user) async{
-      final void response = user; 
-
-      return response; //
+  Future<void> register(RegisterRequest user) async {
+    await _authApi.register(user);
   }
 
-  Future<void> logout() async{
-      throw '';      
+  Future<void> logout() async {
+    await _authApi.logout();
   }
 
-  LoginModel getLoginModel(response){
+  LoginModel mapResponseToLoginModel(LoginResponse response) {
     final user = User(
-    id: response.user.id, 
-    name: response.user.name,
-    lastName: response.user.lastName,
-    phone: response.user.phone,
-    email: response.user.email,
-    birthDate: response.user.birthDate,
+      id: response.user.id,
+      name: response.user.name,
+      lastName: response.user.lastName,
+      phone: response.user.phone,
+      email: response.user.email,
+      birthDate: response.user.birthDate,
     );
-    
-    final token = Token(token: response.token.token);
-    
-    return LoginModel(user: user, token: token);      
-  }
 
+    final token = Token(token: response.token.token);
+
+    return LoginModel(user: user, token: token);
+  }
 }

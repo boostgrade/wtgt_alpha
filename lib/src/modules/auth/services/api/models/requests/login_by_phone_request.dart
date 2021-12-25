@@ -5,7 +5,8 @@ part 'login_by_phone_request.g.dart';
 class LoginByPhoneRequest {
   final String token;
   LoginByPhoneRequest({required this.token});
-  factory LoginByPhoneRequest.fromJson(Map<String, dynamic> json) => _$LoginByPhoneRequestFromJson(json);
+  factory LoginByPhoneRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginByPhoneRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginByPhoneRequestToJson(this);
 }

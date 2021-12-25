@@ -6,10 +6,8 @@ import 'package:provider/provider.dart';
 import 'main_screen_store.dart';
 import 'package:where_to_go_today/src/di/app_dependency.dart';
 
-
 /// Глвный экран с табами
 class MainScreen extends StatelessWidget {
-
   final MainScreenStore store;
 
   static const double _labelSize = 12.0;
@@ -27,14 +25,13 @@ class MainScreen extends StatelessWidget {
   ];
 
   MainScreen({Key? key, required this.store}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-   context.read<AppDependencies>().dio.get('https://fanta-grooming.ru/ggg');
-   
-    return Observer(      
+    context.read<AppDependencies>().dio.get('https://fanta-grooming.ru/ggg');
+
+    return Observer(
       builder: (_) => Scaffold(
-        
         body: _screens[store.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           onTap: store.tabClicked,
@@ -45,7 +42,9 @@ class MainScreen extends StatelessWidget {
             // TODO: поменять иконки из дизайна, когда они появятся
             BottomNavigationBarItem(
               icon: const Icon(Icons.search),
-              activeIcon: const Icon(Icons.search,),
+              activeIcon: const Icon(
+                Icons.search,
+              ),
               label: AppLocalizations.of(context)!.placesTabName,
             ),
             BottomNavigationBarItem(

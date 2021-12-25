@@ -5,7 +5,8 @@ part 'login_by_apple_request.g.dart';
 class LoginByAppleRequest {
   final String token;
   LoginByAppleRequest({required this.token});
-  factory LoginByAppleRequest.fromJson(Map<String, dynamic> json) => _$LoginByAppleRequestFromJson(json);
+  factory LoginByAppleRequest.fromJson(Map<String, dynamic> json) =>
+      _$LoginByAppleRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginByAppleRequestToJson(this);
 }
