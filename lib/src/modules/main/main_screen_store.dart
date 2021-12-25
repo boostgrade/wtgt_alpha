@@ -10,9 +10,8 @@ part 'main_screen_store.g.dart';
 class MainScreenStore = _MainScreenStore with _$MainScreenStore;
 
 abstract class _MainScreenStore with Store {
-
   final BuildContext context;
-  
+
   @observable
   int currentIndex = 0;
 

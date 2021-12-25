@@ -13,7 +13,6 @@ import 'settings_service.dart';
 /// uses the SettingsService to store and retrieve user settings.
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
     with CanThrowExceptionBlocMixin {
-
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;
 
@@ -56,5 +55,4 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState>
   Future<void> _loadSettings() async {
     _themeMode = await _settingsService.themeMode();
   }
-
 }

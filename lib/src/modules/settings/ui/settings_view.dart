@@ -17,11 +17,11 @@ class SettingsView extends StatefulWidget {
   State<SettingsView> createState() => _SettingsViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> with ViewModelDisposerMixin {
-
+class _SettingsViewState extends State<SettingsView>
+    with ViewModelDisposerMixin {
   @override
   ViewModel get vm => widget.store;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

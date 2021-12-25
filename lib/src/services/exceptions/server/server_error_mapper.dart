@@ -16,20 +16,21 @@ class ServerErrorMapper {
     /// нужно написать дополнительные блоки в условном выражении,
     /// предварительно создав классы исключений.
     if (err.response?.statusCode == _notFound) {
-
-      return NotFoundException(err.response?.statusCode, err.response?.statusMessage);
+      return NotFoundException(
+          err.response?.statusCode, err.response?.statusMessage);
     }
     if (err.response?.statusCode == _badRequest) {
-      final  errorData = ServerErrorResponse.fromJson(err.response?.data);
+      final errorData = ServerErrorResponse.fromJson(err.response?.data);
 
       return BadRequestException(errorData.code, errorData.message);
     }
     if (err.response?.statusCode == _unauthorized) {
-
-      return UnauthorizedException(err.response?.statusCode, err.response?.statusMessage);
+      return UnauthorizedException(
+          err.response?.statusCode, err.response?.statusMessage);
     }
 
     /// Возвращается по-умолчанию для остальных ошибок
-    return ServerErrorException(err.response?.statusCode, err.response?.statusMessage);
+    return ServerErrorException(
+        err.response?.statusCode, err.response?.statusMessage);
   }
 }

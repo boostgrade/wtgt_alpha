@@ -18,7 +18,6 @@ class App extends StatefulWidget {
     required this.store,
   }) : super(key: key);
 
-  
   @override
   State<App> createState() => _AppState();
 }
