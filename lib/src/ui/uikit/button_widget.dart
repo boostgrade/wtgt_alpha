@@ -26,19 +26,6 @@ class ButtonWidget extends StatelessWidget {
         : ProjectColors.textColorPrimary;
 
     return ElevatedButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            side: BorderSide(color: ProjectColors.borderColorButton),
-          ),
-        ),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            return ProjectColors.buttonColor;
-          },
-        ),
-      ),
       onPressed: isDisable ? null : onPressed,
       child: !isProcess
           ? Text(
