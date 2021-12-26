@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:where_to_go_today/src/ui/base/view_model.dart';
 import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
+import 'package:where_to_go_today/src/ui/res/theme/project_theme.dart';
 
 /// The Widget that configures your application.
 class App extends StatefulWidget {
@@ -53,7 +54,7 @@ class _AppState extends State<App> with ViewModelDisposerMixin {
           ],
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.appTitle,
-          theme: ThemeData(),
+          theme: ProjectTheme.lightTheme,
           darkTheme: ThemeData.dark(),
           themeMode: widget.store.themeMode,
         );
