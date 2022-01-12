@@ -12,5 +12,6 @@ class AppRouter {
   static final routes = RouteMap(routes: {
     initialRoute: (_) => MainScreenRoute(),
     SettingsRoute.routeName: (_) => SettingsRoute(),
+    AuthByPhone.routeName: (_) => AuthByPhone(),
   });
 }
