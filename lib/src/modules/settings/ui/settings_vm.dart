@@ -6,17 +6,17 @@ import 'package:mobx/mobx.dart';
 import 'package:where_to_go_today/src/ui/base/view_model.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 
-part 'settings_store.g.dart';
+part 'settings_vm.g.dart';
 
-class SettingsStore = _SettingsStore with _$SettingsStore;
+class SettingsVm = _SettingsVm with _$SettingsVm;
 
-abstract class _SettingsStore extends ViewModel with Store {
+abstract class _SettingsVm extends ViewModel with Store {
   @observable
   ThemeMode themeMode = ThemeMode.system;
 
   final SettingsBloc _bloc;
 
-  _SettingsStore(
+  _SettingsVm(
     this._bloc,
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
