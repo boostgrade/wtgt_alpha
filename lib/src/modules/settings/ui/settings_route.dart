@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:where_to_go_today/src/di/app_dependency.dart';
-import 'package:where_to_go_today/src/modules/settings/ui/settings_store.dart';
+import 'package:where_to_go_today/src/modules/settings/ui/settings_vm.dart';
 import 'package:where_to_go_today/src/modules/settings/ui/settings_view.dart';
 
 /// Маршрут для навигации к экрану настроек(сделан для примера)
@@ -10,15 +10,15 @@ class SettingsRoute extends MaterialPage {
 
   SettingsRoute()
       : super(
-          child: Provider<SettingsStore>(
-            create: (ctx) => SettingsStore(
+          child: Provider<SettingsVm>(
+            create: (ctx) => SettingsVm(
               ctx.read<AppDependencies>().settingsController,
               ctx.read<AppDependencies>().errorHandler,
             ),
             child: Builder(
               builder: (context) {
                 return SettingsView(
-                  store: context.read<SettingsStore>(),
+                  store: context.read<SettingsVm>(),
                 );
               },
             ),
