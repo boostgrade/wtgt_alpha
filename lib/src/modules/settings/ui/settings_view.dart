@@ -1,4 +1,4 @@
-import 'package:where_to_go_today/src/modules/settings/ui/settings_store.dart';
+import 'package:where_to_go_today/src/modules/settings/ui/settings_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:where_to_go_today/src/ui/base/view_model.dart';
@@ -9,7 +9,7 @@ import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
 class SettingsView extends StatefulWidget {
-  final SettingsStore store;
+  final SettingsVm store;
 
   const SettingsView({Key? key, required this.store}) : super(key: key);
 
@@ -18,9 +18,9 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView>
-    with ViewModelDisposerMixin {
+    with ViewModelDisposerMixin<SettingsView, SettingsVm> {
   @override
-  ViewModel get vm => widget.store;
+  SettingsVm get vm => widget.store;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,11 @@ class _SettingsViewState extends State<SettingsView>
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Observer(
-          name: 'Settings',
           builder: (_) => DropdownButton<ThemeMode>(
             // Read the selected themeMode from the controller
-            value: widget.store.themeMode,
+            value: vm.themeMode,
             // Call the updateThemeMode method any time the user selects a theme.
-            onChanged: widget.store.updateTheme,
+            onChanged: vm.updateTheme,
             items: const [
               DropdownMenuItem(
                 value: ThemeMode.system,
