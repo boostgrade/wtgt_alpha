@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'code_store.dart';
+part of 'code_vm.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'code_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$CodeStore on _CodeStore, Store {
-  final _$intervalAtom = Atom(name: '_CodeStore.interval');
+mixin _$CodeVm on _CodeVm, Store {
+  final _$intervalAtom = Atom(name: '_CodeVm.interval');
 
   @override
   int get interval {
@@ -24,7 +24,7 @@ mixin _$CodeStore on _CodeStore, Store {
     });
   }
 
-  final _$isDisabledButtonAtom = Atom(name: '_CodeStore.isDisabledButton');
+  final _$isDisabledButtonAtom = Atom(name: '_CodeVm.isDisabledButton');
 
   @override
   bool get isDisabledButton {
@@ -39,7 +39,7 @@ mixin _$CodeStore on _CodeStore, Store {
     });
   }
 
-  final _$isLoadingButtonAtom = Atom(name: '_CodeStore.isLoadingButton');
+  final _$isLoadingButtonAtom = Atom(name: '_CodeVm.isLoadingButton');
 
   @override
   bool get isLoadingButton {
@@ -54,23 +54,23 @@ mixin _$CodeStore on _CodeStore, Store {
     });
   }
 
-  final _$sendSmsCodeAsyncAction = AsyncAction('_CodeStore.sendSmsCode');
+  final _$sendSmsCodeAsyncAction = AsyncAction('_CodeVm.sendSmsCode');
 
   @override
   Future<void> sendSmsCode() {
     return _$sendSmsCodeAsyncAction.run(() => super.sendSmsCode());
   }
 
-  final _$_CodeStoreActionController = ActionController(name: '_CodeStore');
+  final _$_CodeVmActionController = ActionController(name: '_CodeVm');
 
   @override
   void refreshCode() {
-    final _$actionInfo = _$_CodeStoreActionController.startAction(
-        name: '_CodeStore.refreshCode');
+    final _$actionInfo =
+        _$_CodeVmActionController.startAction(name: '_CodeVm.refreshCode');
     try {
       return super.refreshCode();
     } finally {
-      _$_CodeStoreActionController.endAction(_$actionInfo);
+      _$_CodeVmActionController.endAction(_$actionInfo);
     }
   }
 

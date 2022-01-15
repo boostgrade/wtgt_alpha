@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:async';
 
 import 'package:where_to_go_today/src/modules/auth/service/auth_bloc.dart';
@@ -10,11 +8,11 @@ import 'package:mobx/mobx.dart';
 import 'package:where_to_go_today/src/ui/base/view_model.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 
-part 'code_store.g.dart';
+part 'code_vm.g.dart';
 
-class CodeStore = _CodeStore with _$CodeStore;
+class CodeVm = _CodeVm with _$CodeVm;
 
-abstract class _CodeStore extends ViewModel with Store {
+abstract class _CodeVm extends ViewModel with Store {
   static const int timeLifeCode = 60;
 
   @observable
@@ -30,7 +28,7 @@ abstract class _CodeStore extends ViewModel with Store {
   final AuthBloc _bloc;
   late Timer _timer;
 
-  _CodeStore(
+  _CodeVm(
     this._bloc,
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
