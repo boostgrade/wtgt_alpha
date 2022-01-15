@@ -6,5 +6,10 @@
   "placesTabName": "Places",
   "cardTabName": "My Card",
   "profileTabName": "Profile",
-  "buttonTitle": "Show all"
+  "buttonTitle": "Show all",
+  "buttonSendCode": "Send",
+  "buttonRefreshCode": "Request Code",
+  "codeFromSms": "Code from SMS",
+  "sec": "sec",
+  "newCode": "New code via"
 }
