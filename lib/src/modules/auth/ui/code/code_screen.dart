@@ -50,8 +50,8 @@ class _CodeScreenState extends State<CodeScreen>
                   child: Image.asset('assets/images/where_to_go_today'),
                 ),
                 TextField(
-                  decoration: const InputDecoration(
-                    counterStyle: TextStyle(
+                  decoration: InputDecoration(
+                    counterStyle: const TextStyle(
                       height: double.minPositive,
                     ),
                     counterText: '',
