@@ -1,6 +1,6 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/login_response.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/responses/login_response.dart';
 import 'models/requests/login_by_apple_request.dart';
 import 'models/requests/login_by_google_request.dart';
 import 'models/requests/login_by_meta_request.dart';
