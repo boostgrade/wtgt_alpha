@@ -14,6 +14,9 @@ class CodeVm = _CodeVm with _$CodeVm;
 
 abstract class _CodeVm extends ViewModel with Store {
   static const int timeLifeCode = 60;
+  static const int maxLength = 6;
+
+  final TextEditingController controller = TextEditingController();
 
   @observable
   int interval = timeLifeCode;
@@ -25,6 +28,7 @@ abstract class _CodeVm extends ViewModel with Store {
   bool isLoadingButton = false;
 
   String _code = '';
+
   final AuthBloc _bloc;
   late Timer _timer;
 
@@ -35,6 +39,15 @@ abstract class _CodeVm extends ViewModel with Store {
     _startTimer();
 
     observeBloc<AuthState, AuthBloc>(_bloc, _handleStates);
+  }
+
+  void codeScreenState() {
+    controller.addListener(() {
+      final String text = controller.text;
+      isDisabledButton = text.isEmpty || text.length < 6 ? true : false;
+
+      _code = text;
+    });
   }
 
   @action
@@ -50,13 +63,8 @@ abstract class _CodeVm extends ViewModel with Store {
   @override
   void dispose() {
     _timer.cancel();
+    controller.clear();
     super.dispose();
-  }
-
-  void onCodeChanged(String value) {
-    isDisabledButton = _code.isEmpty || _code.length < 6 ? true : false;
-
-    _code = value;
   }
 
   void _startTimer() {
