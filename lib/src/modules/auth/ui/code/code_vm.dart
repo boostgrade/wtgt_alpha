@@ -32,14 +32,14 @@ abstract class _CodeVm extends ViewModel with Store {
     this._bloc,
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
-    _onStartTimer();
+    _startTimer();
 
     observeBloc<AuthState, AuthBloc>(_bloc, _handleStates);
   }
 
   @action
   void refreshCode() {
-    _onStartTimer();
+    _startTimer();
   }
 
   @action
@@ -59,7 +59,7 @@ abstract class _CodeVm extends ViewModel with Store {
     _code = value;
   }
 
-  void _onStartTimer() {
+  void _startTimer() {
     interval = timeLifeCode;
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       if (interval == 0) {
@@ -76,11 +76,9 @@ abstract class _CodeVm extends ViewModel with Store {
       debugPrint('Hello LoadingState');
     } else if (state is SuccessState) {
       debugPrint('Hello SuccessState');
+      isLoadingButton = false;
     } else {
       debugPrint('Hello ErrorState');
     }
-
-    interval = 0;
-    isLoadingButton = false;
   }
 }
