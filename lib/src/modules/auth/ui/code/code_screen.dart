@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 import 'package:where_to_go_today/src/modules/auth/ui/code/code_vm.dart';
+import 'package:where_to_go_today/src/ui/res/assets/app_assets.dart';
 import 'package:where_to_go_today/src/ui/res/colors/colors.dart';
 import 'package:where_to_go_today/src/ui/uikit/button_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-/// Displays the various settings that can be customized by the user.
-///
-/// When a user changes a setting, the SettingsController is updated and
-/// Widgets that listen to the SettingsController are rebuilt.
 class CodeScreen extends StatefulWidget {
-  final CodeVm store;
+  final CodeVm vm;
 
-  const CodeScreen({Key? key, required this.store}) : super(key: key);
+  const CodeScreen({Key? key, required this.vm}) : super(key: key);
 
   @override
   State<CodeScreen> createState() => _CodeScreenState();
@@ -21,24 +18,14 @@ class CodeScreen extends StatefulWidget {
 
 class _CodeScreenState extends State<CodeScreen>
     with ViewModelDisposerMixin<CodeScreen, CodeVm> {
-  final TextEditingController _controller = TextEditingController();
-
   @override
-  CodeVm get vm => widget.store;
-
-  _CodeScreenState() {
-    _controller.addListener(() {
-      final String text = _controller.text;
-      vm.onCodeChanged(text);
-    });
-  }
+  CodeVm get vm => widget.vm;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: GlobalKey(),
-      body: Container(
-        padding: const EdgeInsets.all(30),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +34,7 @@ class _CodeScreenState extends State<CodeScreen>
             Expanded(
               child: Column(children: [
                 Center(
-                  child: Image.asset('assets/images/where_to_go_today'),
+                  child: Image.asset(AppAssets.logo),
                 ),
                 TextField(
                   decoration: InputDecoration(
@@ -57,11 +44,10 @@ class _CodeScreenState extends State<CodeScreen>
                     counterText: '',
                     labelText: AppLocalizations.of(context)!.codeFromSms,
                   ),
-                  controller: _controller,
-                  maxLength: 6,
+                  controller: vm.controller,
+                  maxLength: vm.maxLength,
                 ),
-                Container(
-                  //padding: const EdgeInsets.only(top: 32),
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Observer(
                     builder: (_) => Padding(
@@ -98,7 +84,6 @@ class _CodeScreenState extends State<CodeScreen>
             ),
             SizedBox(
               width: double.infinity,
-              // height: double.infinity,
               child: Observer(
                 builder: (_) => ButtonWidget(
                   title: AppLocalizations.of(context)!.buttonSendCode,
@@ -112,11 +97,5 @@ class _CodeScreenState extends State<CodeScreen>
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
