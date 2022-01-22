@@ -44,7 +44,8 @@ abstract class _CodeVm extends ViewModel with Store {
   void codeScreenState() {
     controller.addListener(() {
       final String text = controller.text;
-      isDisabledButton = text.isEmpty || text.length < 6 ? true : false;
+
+      isDisabledButton = text.isEmpty || text.length < maxLength;
 
       _code = text;
     });
