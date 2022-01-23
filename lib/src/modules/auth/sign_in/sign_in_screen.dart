@@ -1,47 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:where_to_go_today/src/ui/base/view_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_vm.dart';
+
+import 'package:where_to_go_today/src/ui/uikit/button_widget.dart';
 
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  final SignInVM vm;
+  const SignInScreen({ Key? key, required this.vm }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SignInScreenState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  String? _phoneNumber;
-
-
+class _SignInScreenState extends State<SignInScreen>{
+  late final SignInVM vm;
   @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[          
-          const SizedBox(height: 24.0),
-          // "Phone number" form.
-          TextFormField(
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              filled: true,
-              icon: Icon(Icons.phone),
-              hintText: 'Where can we reach you?',
-              labelText: 'Phone Number *',
-              prefixText: '+7',
-            ),
-            keyboardType: TextInputType.phone,
-            onSaved: (String? value) {
-              this._phoneNumber = value;
-              print('phoneNumber=$_phoneNumber');
-            },                     
+  void initState(){
+    super.initState();
+    
+  }
+  
+ @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+
+    vm = widget.vm;
+  }
+
+  
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Column(
+        children: [
+           TextField(
+            controller: vm.controller,
+            keyboardType: TextInputType.number,
           ),
+          Observer(
+            builder: (_) => ButtonWidget(
+             title: 'Отправить',
+             onPressed: vm.sendPhone,
+             isDisable: vm.isButtonDisable,
+            ),
+          ),
+          
         ],
       ),
     );
   }
 }
-

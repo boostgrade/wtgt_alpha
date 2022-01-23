@@ -1,3 +1,5 @@
+import 'package:where_to_go_today/src/modules/auth/service/auth_bloc.dart';
+import 'package:where_to_go_today/src/modules/auth/service/state/auth_state.dart';
 import 'package:where_to_go_today/src/modules/settings/service/event/event.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_bloc.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_service.dart';
@@ -13,6 +15,7 @@ import 'base/dependency_bundle.dart';
 class AppDependencies extends DependencyBundle {
   final dio = DioModule().dio;
   final settingsController = SettingsBloc(SettingsService());
+  final authByPhoneController = SettingsBloc(SettingsService());
 
   late final messageController = DefaultMessageController();
   late final errorHandler = ScenarioErrorHandler(
@@ -21,6 +24,8 @@ class AppDependencies extends DependencyBundle {
     ),
   );
 
+  late final authBlock = AuthBloc();
+  
   Future<void> init() async {
     settingsController.add(LoadSettings());
   }
