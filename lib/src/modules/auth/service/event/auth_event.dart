@@ -4,12 +4,12 @@ abstract class AuthEvent extends Equatable {}
 
 /// Отправка СМС
 class SendSmsCodeEvent extends AuthEvent {
-  final String phone;
+  final String code;
 
   @override
-  List<Object?> get props => [phone];
+  List<Object?> get props => [code];
 
-  SendSmsCodeEvent(this.phone);
+  SendSmsCodeEvent(this.code);
 }
 
 /// Событие авторизации через соц сети (SSO)

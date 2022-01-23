@@ -1,14 +1,14 @@
 import 'package:where_to_go_today/src/domain/token.dart';
 import 'package:where_to_go_today/src/domain/user.dart';
 import 'package:where_to_go_today/src/modules/auth/domain/login_model.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/auth_api.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_apple_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_google_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_meta_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_phone_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/login_by_vk_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/requests/register_request.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/login_response.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/auth_api.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/login_by_apple_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/login_by_google_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/login_by_meta_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/login_by_phone_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/login_by_vk_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/requests/register_request.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/responses/login_response.dart';
 
 class AuthRepository {
   final AuthApi _authApi;
