@@ -1,3 +1,6 @@
+import 'package:where_to_go_today/src/modules/auth/service/api/auth_api.dart';
+import 'package:where_to_go_today/src/modules/auth/service/auth_bloc.dart';
+import 'package:where_to_go_today/src/modules/auth/service/repository/auth_repository.dart';
 import 'package:where_to_go_today/src/modules/settings/service/event/event.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_bloc.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_service.dart';
@@ -13,6 +16,7 @@ import 'base/dependency_bundle.dart';
 class AppDependencies extends DependencyBundle {
   final dio = DioModule().dio;
   final settingsController = SettingsBloc(SettingsService());
+  late final authBloc = AuthBloc(AuthRepository(AuthApi(dio)));
 
   late final messageController = DefaultMessageController();
   late final errorHandler = ScenarioErrorHandler(
