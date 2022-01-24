@@ -45,7 +45,7 @@ class _CodeScreenState extends State<CodeScreen>
                     labelText: AppLocalizations.of(context)!.codeFromSms,
                   ),
                   controller: vm.controller,
-                  maxLength: vm.maxLength,
+                  maxLength: smsMaxLength,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
