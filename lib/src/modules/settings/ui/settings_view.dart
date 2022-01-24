@@ -1,7 +1,6 @@
 import 'package:where_to_go_today/src/modules/settings/ui/settings_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:where_to_go_today/src/ui/base/view_model.dart';
 import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 
 /// Displays the various settings that can be customized by the user.

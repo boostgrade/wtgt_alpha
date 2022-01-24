@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/token_response.dart';
-import 'package:where_to_go_today/src/modules/auth/services/api/models/responses/user_response.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/responses/token_response.dart';
+import 'package:where_to_go_today/src/modules/auth/service/api/models/responses/user_response.dart';
 part 'login_response.g.dart';
 
 @JsonSerializable()
