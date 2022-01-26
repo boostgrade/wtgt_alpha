@@ -5,7 +5,6 @@ import 'package:where_to_go_today/src/modules/auth/ui/code/code_vm.dart';
 
 import 'code_screen.dart';
 
-/// Маршрут для навигации к экрану настроек(сделан для примера)
 class CodeRoute extends MaterialPage {
   static const routeName = '/auth_code';
 
