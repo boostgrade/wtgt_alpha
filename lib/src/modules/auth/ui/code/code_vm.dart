@@ -38,7 +38,7 @@ abstract class _CodeVm extends ViewModel with Store {
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
     _startTimer();
-
+    codeScreenState();
     observeBloc<AuthState, AuthBloc>(_bloc, _handleStates);
   }
 
