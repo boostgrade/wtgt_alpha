@@ -5,7 +5,7 @@ import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_screen.dart';
 import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_vm.dart';
 
 class AuthByPhoneRoute extends MaterialPage {
-  static const routeName = '/auth'; // Пока на главном экране
+  static const routeName = '/auth_by_phone'; // Пока на главном экране
 
   AuthByPhoneRoute()
       : super(

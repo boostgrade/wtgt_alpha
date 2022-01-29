@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_vm.dart';
+import 'package:where_to_go_today/src/ui/base/view_model_disposer_mixin.dart';
 
 import 'package:where_to_go_today/src/ui/uikit/button_widget.dart';
 
@@ -13,8 +14,9 @@ class SignInScreen extends StatefulWidget {
   _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen>{
+class _SignInScreenState extends State<SignInScreen> with ViewModelDisposerMixin<SignInScreen, SignInVM>{
   late final SignInVM vm;
+  
   @override
   void initState(){
     super.initState();
@@ -35,8 +37,12 @@ class _SignInScreenState extends State<SignInScreen>{
       body: Column(
         children: [
            TextField(
+            maxLength: 10,
             controller: vm.controller,
             keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              prefixText: '+7',
+            ),
           ),
           Observer(
             builder: (_) => ButtonWidget(

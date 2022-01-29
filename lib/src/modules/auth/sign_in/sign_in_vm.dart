@@ -35,7 +35,7 @@ abstract class _SignInVM extends ViewModel with Store {
   void _onChangePhone(){
     phone = controller.text;
     
-      isButtonDisable = phone.length < 11;
+      isButtonDisable = phone.length != 10;
    
   }
   @action
