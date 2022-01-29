@@ -27,11 +27,10 @@ class AppDependencies extends DependencyBundle {
       messageController,
     ),
   );
-  
+
   late final authRepository = AuthRepository(AuthApi(dio));
   late final authBlock = AuthBloc(authRepository);
- 
-  
+
   Future<void> init() async {
     settingsController.add(LoadSettings());
   }

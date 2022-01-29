@@ -7,6 +7,7 @@ import 'package:where_to_go_today/src/ui/base/view_model.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 part 'sign_in_vm.g.dart';
 
+const int phoneMaxLength = 10;
 class SignInVM = _SignInVM with _$SignInVM;
 
 abstract class _SignInVM extends ViewModel with Store {
@@ -16,30 +17,36 @@ abstract class _SignInVM extends ViewModel with Store {
   @observable
   bool isButtonDisable = true;
 
+  @observable
+  bool isLoadingButton = false;
+
   final AuthBloc _bloc;
- // final NavigatorState _navigator;
 
-  _SignInVM(this._bloc,ErrorHandler errorHandler) : super(errorHandler){
+  _SignInVM(this._bloc, ErrorHandler errorHandler) : super(errorHandler) {
     controller.addListener(_onChangePhone);
-    observeBloc<AuthState, AuthBloc>(_bloc, _handlestate) ; 
+    observeBloc<AuthState, AuthBloc>(_bloc, _handlestate);
   }
+
   void _handlestate(state) {
-        if(state is LoadingState){
-          
-        } else if (state is SuccessState){
-
-        }
+    if (state is LoadingState) {
+      isLoadingButton = true;
+      debugPrint('Hello LoadingState');
+    } else if (state is SuccessState) {
+      debugPrint('Hello SuccessState');
+      isLoadingButton = false;
+    } else {
+      debugPrint('Hello ErrorState');
     }
-
- 
-  void _onChangePhone(){
-    phone = controller.text;
-    
-      isButtonDisable = phone.length != 10;
-   
   }
+
+  void _onChangePhone() {
+    phone = controller.text;
+    isButtonDisable = phone.length != phoneMaxLength;
+  }
+
   @action
-  void sendPhone(){
+  void sendPhone() {
+    debugPrint(phone);
     _bloc.add(SendPhoneEvent(phone));
   }
 }

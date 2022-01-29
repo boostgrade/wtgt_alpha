@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {}
 
-/// Отправка номера телефона 
+/// Отправка номера телефона
 class SendPhoneEvent extends AuthEvent {
   final String phone;
 
