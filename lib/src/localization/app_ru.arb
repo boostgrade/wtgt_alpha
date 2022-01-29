@@ -3,5 +3,10 @@
   "placesTabName": "Заведения",
   "cardTabName": "Моя Карта",
   "profileTabName": "Профиль",
-  "buttonTitle": "Показать все"
+  "buttonTitle": "Показать все",
+  "buttonSendCode": "Отправить",
+  "buttonRefreshCode": "Запросить код",
+  "codeFromSms": "Код из СМС",
+  "sec": "сек",
+  "newCode": "Новый код через"
 }

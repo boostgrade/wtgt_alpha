@@ -29,6 +29,9 @@ class ProjectTheme {
       inputDecorationTheme: const InputDecorationTheme(
         enabledBorder: inputBorder,
         focusedBorder: inputBorder,
+        labelStyle: TextStyle(
+          color: ProjectColors.textColorPrimary,
+        ),
         contentPadding: EdgeInsets.only(
           left: 15.0,
           top: 16.0,
@@ -40,6 +43,7 @@ class ProjectTheme {
       /// Кнопки
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+          fixedSize: MaterialStateProperty.all(const Size.fromHeight(44)),
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
               return ProjectColors.buttonColor;
