@@ -17,6 +17,7 @@ abstract class ProjectColors {
   static const Color preloaderColor = _cyanBlue;
   static const Color textColorDisabled = _blackTranslucent;
   static const Color borderColorButton = _cyanBlue;
+  static const Color timer = _darkGreen;
 
 //TODO: Основная палитра
 
@@ -32,4 +33,5 @@ abstract class ProjectColors {
   static const Color _yellow = Color(0xFFEBCE0C);
   static const Color _blackTranslucent = Color(0xFF999999);
   static const Color _cyanBlue = Color(0xFF184E9E);
+  static const Color _darkGreen = Color(0xFF6CA05A);
 }

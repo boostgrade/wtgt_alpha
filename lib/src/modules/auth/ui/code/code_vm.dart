@@ -10,11 +10,12 @@ import 'package:where_to_go_today/src/ui/errors_handling/error_handler.dart';
 
 part 'code_vm.g.dart';
 
+const int smsMaxLength = 6;
+
 class CodeVm = _CodeVm with _$CodeVm;
 
 abstract class _CodeVm extends ViewModel with Store {
   static const int timeLifeCode = 60;
-  static const int maxLength = 6;
 
   final TextEditingController controller = TextEditingController();
 
@@ -37,7 +38,7 @@ abstract class _CodeVm extends ViewModel with Store {
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
     _startTimer();
-
+    codeScreenState();
     observeBloc<AuthState, AuthBloc>(_bloc, _handleStates);
   }
 
@@ -45,7 +46,7 @@ abstract class _CodeVm extends ViewModel with Store {
     controller.addListener(() {
       final String text = controller.text;
 
-      isDisabledButton = text.isEmpty || text.length < maxLength;
+      isDisabledButton = text.isEmpty || text.length < smsMaxLength;
 
       _code = text;
     });

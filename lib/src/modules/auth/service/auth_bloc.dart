@@ -6,7 +6,7 @@ import 'package:where_to_go_today/src/modules/auth/service/state/auth_state.dart
 
 class AuthBloc extends Bloc<AuthEvent, AuthState>
     with CanThrowExceptionBlocMixin {
-  AuthBloc(AuthRepository authService) : super(LoadingState()) {
+  AuthBloc(AuthRepository authRepository) : super(LoadingState()) {
     // ignore: no-empty-block
     on<SendSmsCodeEvent>((event, emit) {
       emit(LoadingState());
