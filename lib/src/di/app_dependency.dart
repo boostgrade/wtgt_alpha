@@ -4,6 +4,7 @@ import 'package:where_to_go_today/src/modules/auth/service/repository/auth_repos
 import 'package:where_to_go_today/src/modules/settings/service/event/event.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_bloc.dart';
 import 'package:where_to_go_today/src/modules/settings/service/settings_service.dart';
+import 'package:where_to_go_today/src/modules/settings/ui/auth_by_phone_route.dart';
 import 'package:where_to_go_today/src/services/network/dio/dio_module.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/scenario_error_handler/scenario_error_handler.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/scenario_error_handler/scenarios/snackbar_error_scenarios.dart';
@@ -17,8 +18,6 @@ class AppDependencies extends DependencyBundle {
   final dio = DioModule().dio;
   final settingsController = SettingsBloc(SettingsService());
 
-  final authByPhoneController = SettingsBloc(SettingsService());
-
   late final authBloc = AuthBloc(AuthRepository(AuthApi(dio)));
 
   late final messageController = DefaultMessageController();
@@ -29,7 +28,6 @@ class AppDependencies extends DependencyBundle {
   );
 
   late final authRepository = AuthRepository(AuthApi(dio));
-  late final authBlock = AuthBloc(authRepository);
 
   Future<void> init() async {
     settingsController.add(LoadSettings());

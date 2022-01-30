@@ -6,6 +6,11 @@ import 'package:where_to_go_today/src/ui/res/assets/app_assets.dart';
 import 'package:where_to_go_today/src/ui/uikit/button_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// Экран авторизации по номеру телефона
+/// https://www.figma.com/file/8wRDN0M82bIuRZS6Uomv8X/Where-to-go-today%3F?node-id=5%3A59
+
+const String prefix = '+7';
+
 class SignInScreen extends StatefulWidget {
   final SignInVM vm;
   const SignInScreen({Key? key, required this.vm}) : super(key: key);
@@ -33,35 +38,28 @@ class _SignInScreenState extends State<SignInScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: Column(children: [
-                Center(
-                  child: Image.asset(AppAssets.logo),
+            Column(children: [
+              Center(
+                child: Image.asset(AppAssets.logo),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  prefixText: prefix,
+                  labelText: AppLocalizations.of(context)!.phoneNumber,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                    prefixText: '+7',
-                    counterStyle: const TextStyle(
-                      height: double.minPositive,
-                    ),
-                    counterText: '',
-                    labelText: AppLocalizations.of(context)!.phoneNumber,
-                  ),
-                  controller: vm.controller,
-                  maxLength: phoneMaxLength,
-                  keyboardType: TextInputType.number,
-                ),
-              ]),
-            ),
+                controller: vm.controller,
+                maxLength: phoneMaxLength,
+                keyboardType: TextInputType.number,
+              ),
+            ]),
             SizedBox(
-              width: double.infinity,
               child: Observer(
                 builder: (_) => ButtonWidget(
                   title: AppLocalizations.of(context)!.buttonSendCode,

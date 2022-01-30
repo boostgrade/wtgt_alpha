@@ -11,7 +11,7 @@ class AuthByPhoneRoute extends MaterialPage {
       : super(
           child: Provider<SignInVM>(
             create: (ctx) => SignInVM(
-              ctx.read<AppDependencies>().authBlock,
+              ctx.read<AppDependencies>().authBloc,
               ctx.read<AppDependencies>().errorHandler,
             ),
             child: Builder(builder: (context) {
