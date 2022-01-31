@@ -37,7 +37,7 @@ abstract class _CodeVm extends ViewModel with Store {
     this._bloc,
     ErrorHandler errorHandler,
   ) : super(errorHandler) {
-    _startTimer();
+    requestCode();
     codeScreenState();
     observeBloc<AuthState, AuthBloc>(_bloc, _handleStates);
   }
@@ -53,7 +53,9 @@ abstract class _CodeVm extends ViewModel with Store {
   }
 
   @action
-  void refreshCode() {
+  Future<void> requestCode() async {
+    //TODO: откуда брать номер???
+    _bloc.add(LoginByPhoneEvent('+79819594568'));
     _startTimer();
   }
 
