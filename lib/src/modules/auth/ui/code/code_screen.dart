@@ -69,7 +69,7 @@ class _CodeScreenState extends State<CodeScreen>
                               ),
                             )
                           : GestureDetector(
-                              onTap: vm.requestCode(),
+                              onTap: vm.requestCode,
                               child: Text(
                                 AppLocalizations.of(context)!.buttonRefreshCode,
                                 style: const TextStyle(
