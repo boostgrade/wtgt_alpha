@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:where_to_go_today/src/modules/auth/service/phone_service.dart';
 import 'package:where_to_go_today/src/modules/auth/service/repository/auth_repository.dart';
 import 'package:where_to_go_today/src/services/base/throw_exception_bloc.dart';
 import 'package:where_to_go_today/src/modules/auth/service/event/auth_event.dart';
@@ -6,15 +7,18 @@ import 'package:where_to_go_today/src/modules/auth/service/state/auth_state.dart
 
 class AuthBloc extends Bloc<AuthEvent, AuthState>
     with CanThrowExceptionBlocMixin {
-  AuthBloc(AuthRepository authRepository) : super(LoadingState()) {
-    // ignore: no-empty-block
-    on<SendSmsCodeEvent>((event, emit) {
+  final AuthRepository _authRepository;
+  final PhoneService _phoneService;
+
+  AuthBloc(this._authRepository, this._phoneService) : super(LoadingState()) {
+    on<SendSmsCodeEvent>((event, emit) async {
       emit(LoadingState());
 
-      // ignore: todo
-      //TODO:реализация метода по отправки смс
-
-      emit(SuccessState());
+      if (await _phoneService.sendSmsCode(event.code)) {
+        emit(SuccessState());
+      } else {
+        emit(ErrorState());
+      }
     });
 
     // ignore: no-empty-block
@@ -31,8 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     on<LoginByPhoneEvent>((event, emit) {
       emit(LoadingState());
 
-      // ignore: todo
-      //TODO:реализация метода авторизации через телефон
+      _phoneService.loginByPhone(event.phone);
 
       emit(SuccessState());
     });

@@ -8,6 +8,7 @@ import 'package:where_to_go_today/src/services/network/dio/dio_module.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/scenario_error_handler/scenario_error_handler.dart';
 import 'package:where_to_go_today/src/ui/errors_handling/scenario_error_handler/scenarios/snackbar_error_scenarios.dart';
 import 'package:where_to_go_today/src/ui/messages/default_message_controller.dart';
+import 'package:where_to_go_today/src/modules/auth/service/phone_service.dart';
 
 import 'base/dependency_bundle.dart';
 
@@ -16,7 +17,7 @@ import 'base/dependency_bundle.dart';
 class AppDependencies extends DependencyBundle {
   final dio = DioModule().dio;
   final settingsController = SettingsBloc(SettingsService());
-  late final authBloc = AuthBloc(AuthRepository(AuthApi(dio)));
+  late final authBloc = AuthBloc(AuthRepository(AuthApi(dio)), PhoneService());
 
   late final messageController = DefaultMessageController();
   late final errorHandler = ScenarioErrorHandler(
