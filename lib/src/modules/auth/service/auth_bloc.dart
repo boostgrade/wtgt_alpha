@@ -14,7 +14,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     on<SendSmsCodeEvent>((event, emit) async {
       emit(LoadingState());
 
-      if (await _phoneService.sendSmsCode(event.code)) {
+      final uid = await _phoneService.sendSmsCode(event.code);
+      if (uid != null && uid.isNotEmpty) {
         emit(SuccessState());
       } else {
         emit(ErrorState());
@@ -32,12 +33,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     });
 
     // ignore: no-empty-block
-    on<LoginByPhoneEvent>((event, emit) {
+    on<LoginByPhoneEvent>((event, emit) async {
       emit(LoadingState());
 
-      _phoneService.loginByPhone(event.phone);
-
-      emit(SuccessState());
+      final resultLoginByPhone = await _phoneService.loginByPhone(event.phone);
+      await resultLoginByPhone.then((value) {
+        _phoneService.verificationId = value;
+      }).whenComplete(() => emit(SuccessState()));
     });
 
     // ignore: no-empty-block
