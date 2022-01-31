@@ -1,43 +1,44 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:where_to_go_today/firebase_options.dart';
 
 class PhoneService {
-  late final FirebaseAuth _auth;
+  late FirebaseAuth _auth;
   late String _verificationId;
 
-  Future<void> loginByPhone(String phone) async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+  ///Сеттер для токена верификации
+  set verificationId(String token) => _verificationId = token;
 
+  Future<Future<String>> loginByPhone(String phone) async {
+    final Completer<String> completer = Completer();
     _auth = FirebaseAuth.instance;
 
     await _auth.verifyPhoneNumber(
       phoneNumber: phone,
       codeAutoRetrievalTimeout: (String verificationId) {},
       codeSent: (String verificationId, int? resendToken) async {
-        _verificationId = verificationId;
+        completer.complete(verificationId);
       },
       verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {},
       verificationFailed: (FirebaseAuthException error) {},
     );
+
+    return completer.future;
   }
 
-  Future<bool> sendSmsCode(String code) async {
+  /// return [uid] токен авторизации
+  Future<String?> sendSmsCode(String code) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: _verificationId,
       smsCode: code,
     );
 
     try {
-      await _auth.signInWithCredential(credential);
-    } on FirebaseAuthException catch (e) {
-      return false;
-    }
+      final token = await _auth.signInWithCredential(credential);
 
-    return true;
+      return token.user?.uid;
+    } on FirebaseAuthException {
+      return null;
+    }
   }
 }
