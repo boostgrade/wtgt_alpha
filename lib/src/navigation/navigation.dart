@@ -12,9 +12,9 @@ class AppRouter {
   static const initialRoute = '/';
 
   static final routes = RouteMap(routes: {
-    initialRoute: (_) => MainScreenRoute(),
+    initialRoute: (_) => AuthByPhoneRoute(),
     SettingsRoute.routeName: (_) => SettingsRoute(),
     AuthByPhoneRoute.routeName: (_) => AuthByPhoneRoute(),
-    CodeRoute.routeName: (_) => CodeRoute(),
+    CodeRoute.routeName: (phone) => CodeRoute(phone: phone),
   });
 }

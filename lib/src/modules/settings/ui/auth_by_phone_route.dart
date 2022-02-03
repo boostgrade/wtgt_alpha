@@ -5,7 +5,7 @@ import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_screen.dart';
 import 'package:where_to_go_today/src/modules/auth/sign_in/sign_in_vm.dart';
 
 class AuthByPhoneRoute extends MaterialPage {
-  static const routeName = '/';
+  static const routeName = '/auth_by_phone';
 
   AuthByPhoneRoute()
       : super(
@@ -13,10 +13,12 @@ class AuthByPhoneRoute extends MaterialPage {
             create: (ctx) => SignInVM(
               ctx.read<AppDependencies>().authBloc,
               ctx.read<AppDependencies>().errorHandler,
+              ctx,
             ),
             child: Builder(builder: (context) {
               return SignInScreen(
                 vm: context.read<SignInVM>(),
+                context: context,
               );
             }),
           ),

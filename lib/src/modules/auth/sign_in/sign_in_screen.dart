@@ -13,7 +13,12 @@ const String prefix = '+7';
 
 class SignInScreen extends StatefulWidget {
   final SignInVM vm;
-  const SignInScreen({Key? key, required this.vm}) : super(key: key);
+  final BuildContext context;
+  const SignInScreen({
+    Key? key,
+    required this.vm,
+    required this.context,
+  }) : super(key: key);
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
