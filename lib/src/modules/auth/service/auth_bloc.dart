@@ -14,8 +14,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     on<SendSmsCodeEvent>((event, emit) async {
       emit(LoadingState());
 
-      final uid = await _phoneService.sendSmsCode(event.code);
-      if (uid != null && uid.isNotEmpty) {
+      final userCredential = await _phoneService.sendSmsCode(event.code);
+      if (userCredential.user != null) {
+        //TODO: сделать хранилище
+        await _authRepository.loginByPhone(
+          userCredential.user!.uid,
+          _phoneService.phone,
+        );
         emit(SuccessState());
       } else {
         emit(ErrorState());
@@ -36,10 +41,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     on<LoginByPhoneEvent>((event, emit) async {
       emit(LoadingState());
 
-      final resultLoginByPhone = await _phoneService.loginByPhone(event.phone);
-      await resultLoginByPhone.then((value) {
-        _phoneService.verificationId = value;
-      }).whenComplete(() => emit(SuccessState()));
+      if (await _phoneService.loginByPhone(event.phone)) {
+        emit(SuccessState());
+      }
     });
 
     // ignore: no-empty-block

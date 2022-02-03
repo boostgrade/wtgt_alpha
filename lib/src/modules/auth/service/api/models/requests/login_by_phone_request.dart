@@ -4,7 +4,8 @@ part 'login_by_phone_request.g.dart';
 @JsonSerializable()
 class LoginByPhoneRequest {
   final String token;
-  LoginByPhoneRequest({required this.token});
+  final String phone;
+  LoginByPhoneRequest({required this.token, required this.phone});
   factory LoginByPhoneRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginByPhoneRequestFromJson(json);
 

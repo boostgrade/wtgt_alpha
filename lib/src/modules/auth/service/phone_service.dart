@@ -5,11 +5,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 class PhoneService {
   late FirebaseAuth _auth;
   late String _verificationId;
+  late String _phone;
 
-  ///Сеттер для токена верификации
-  set verificationId(String token) => _verificationId = token;
+  String get phone {
+    return _phone;
+  }
 
-  Future<Future<String>> loginByPhone(String phone) async {
+  Future<bool> loginByPhone(String phone) async {
+    _phone = phone;
+
     final Completer<String> completer = Completer();
     _auth = FirebaseAuth.instance;
 
@@ -23,22 +27,22 @@ class PhoneService {
       verificationFailed: (FirebaseAuthException error) {},
     );
 
-    return completer.future;
+    _verificationId = await completer.future;
+
+    return true;
   }
 
   /// return [uid] токен авторизации
-  Future<String?> sendSmsCode(String code) async {
+  Future<UserCredential> sendSmsCode(String code) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: _verificationId,
       smsCode: code,
     );
 
     try {
-      final token = await _auth.signInWithCredential(credential);
-
-      return token.user?.uid;
-    } on FirebaseAuthException {
-      return null;
+      return await _auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.message);
     }
   }
 }
