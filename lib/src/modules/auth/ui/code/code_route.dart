@@ -6,9 +6,9 @@ import 'package:where_to_go_today/src/modules/auth/ui/code/code_vm.dart';
 import 'code_screen.dart';
 
 class CodeRoute extends MaterialPage {
-  static const routeName = '/auth_code';
+  static const routeName = '/auth_code:phone';
 
-  CodeRoute()
+  CodeRoute({phone})
       : super(
           child: Provider<CodeVm>(
             create: (ctx) => CodeVm(
@@ -19,6 +19,7 @@ class CodeRoute extends MaterialPage {
               builder: (context) {
                 return CodeScreen(
                   vm: context.read<CodeVm>(),
+                  phone: phone,
                 );
               },
             ),

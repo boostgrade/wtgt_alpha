@@ -11,5 +11,6 @@
   "buttonRefreshCode": "Request Code",
   "codeFromSms": "Code from SMS",
   "sec": "sec",
-  "newCode": "New code via"
+  "newCode": "New code via",
+  "phoneNumber": "Phone number"
 }

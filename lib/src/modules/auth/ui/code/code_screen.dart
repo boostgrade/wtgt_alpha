@@ -9,8 +9,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CodeScreen extends StatefulWidget {
   final CodeVm vm;
-
-  const CodeScreen({Key? key, required this.vm}) : super(key: key);
+  final String phone;
+  const CodeScreen({Key? key, required this.vm, required this.phone})
+      : super(key: key);
 
   @override
   State<CodeScreen> createState() => _CodeScreenState();

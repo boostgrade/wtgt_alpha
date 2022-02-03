@@ -8,5 +8,6 @@
   "buttonRefreshCode": "Запросить код",
   "codeFromSms": "Код из СМС",
   "sec": "сек",
-  "newCode": "Новый код через"
+  "newCode": "Новый код через",
+  "phoneNumber": "Номер телефона"
 }

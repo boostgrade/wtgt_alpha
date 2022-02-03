@@ -1,6 +1,5 @@
 import 'package:where_to_go_today/src/modules/settings/service/settings_bloc.dart';
 import 'package:where_to_go_today/src/modules/settings/service/state/state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:where_to_go_today/src/ui/base/view_model.dart';

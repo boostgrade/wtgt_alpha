@@ -2,6 +2,16 @@ import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {}
 
+/// Отправка номера телефона
+class SendPhoneEvent extends AuthEvent {
+  final String phone;
+
+  @override
+  List<Object?> get props => [phone];
+
+  SendPhoneEvent(this.phone);
+}
+
 /// Отправка СМС
 class SendSmsCodeEvent extends AuthEvent {
   final String code;
