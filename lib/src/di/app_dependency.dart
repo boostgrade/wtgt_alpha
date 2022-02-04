@@ -17,11 +17,10 @@ import 'base/dependency_bundle.dart';
 class AppDependencies extends DependencyBundle {
   final dio = DioModule().dio;
   final settingsController = SettingsBloc(SettingsService());
-  final String baseUrl = 'https://stoplight.io/mocks/softech/wtgt/75539';
+
   late final authBloc = AuthBloc(
     AuthRepository(AuthApi(
       dio,
-      baseUrl: baseUrl,
     )),
     PhoneService(),
   );

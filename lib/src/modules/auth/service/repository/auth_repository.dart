@@ -35,9 +35,9 @@ class AuthRepository {
     return mapResponseToLoginModel(response);
   }
 
-  Future<LoginModel> loginByPhone(String phoneToken, String phone) async {
+  Future<LoginModel> loginByPhone(String firebaseToken, String phone) async {
     final LoginResponse response = await _authApi
-        .loginByPhone(LoginByPhoneRequest(token: phoneToken, phone: phone));
+        .loginByPhone(LoginByPhoneRequest(token: firebaseToken, phone: phone));
 
     return mapResponseToLoginModel(response);
   }
