@@ -1,1 +1,1 @@
-const String baseUrl = 'https://yandex.ru/'; //TODO: вставить адрес сервера
+const String baseUrl = 'https://stoplight.io/mocks/softech/wtgt/75539';

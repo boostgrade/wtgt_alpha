@@ -54,24 +54,18 @@ mixin _$CodeVm on _CodeVm, Store {
     });
   }
 
+  final _$requestCodeAsyncAction = AsyncAction('_CodeVm.requestCode');
+
+  @override
+  Future<void> requestCode() {
+    return _$requestCodeAsyncAction.run(() => super.requestCode());
+  }
+
   final _$sendSmsCodeAsyncAction = AsyncAction('_CodeVm.sendSmsCode');
 
   @override
   Future<void> sendSmsCode() {
     return _$sendSmsCodeAsyncAction.run(() => super.sendSmsCode());
-  }
-
-  final _$_CodeVmActionController = ActionController(name: '_CodeVm');
-
-  @override
-  void refreshCode() {
-    final _$actionInfo =
-        _$_CodeVmActionController.startAction(name: '_CodeVm.refreshCode');
-    try {
-      return super.refreshCode();
-    } finally {
-      _$_CodeVmActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
